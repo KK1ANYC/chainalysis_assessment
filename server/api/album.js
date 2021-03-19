@@ -10,8 +10,6 @@ router.get('/', async (req, res, next) => {
       include:
        [Artist]
     })
-    console.log("artist", Artist)
-    console.log('album', albums)
     res.send(albums)
   } catch (err) {next(err)}
 })
