@@ -7,13 +7,21 @@ const Op = Sequelize.Op
 router.get('/', async (req, res, next) => {
   try {
     let albums = await Album.findAll({
-      include:
-       [Artist]
+      include: [Artist]
     })
-    console.log("artist", Artist)
-    console.log('album', albums)
     res.send(albums)
   } catch (err) {next(err)}
 })
+
+router.get('/:albumId', async (req, res, next) => {
+  try {
+    let album = await Album.findByPk(req.params.albumId, {
+      include: [Artist, Song]
+    });
+    res.send(album);
+  } catch (err) {next(err)}
+})
+
+
 
 module.exports = router
