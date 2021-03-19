@@ -5,12 +5,14 @@ const Song = require('./song')
 // require each of your models here...
 
 // ...and give them some nice associations here!
-Artist.hasMany(Album) 
-Artist.hasMany(Song)
-Album.belongsTo(Artist)
-Album.hasMany(Song)
-Song.belongsTo(Artist)
 Song.belongsTo(Album)
+Album.hasMany(Song)
+
+Song.belongsTo(Artist)
+Artist.hasMany(Song)
+
+Album.belongsTo(Artist)
+Artist.hasMany(Album)
 
 
 module.exports = {
