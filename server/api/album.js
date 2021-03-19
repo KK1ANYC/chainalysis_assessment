@@ -1,9 +1,10 @@
 const router = require('express').Router()
-const Album = require('../db/album')
+const { Album } = require('../db')
 
+//.get mounted on /api/album
 router.get('/', async (req, res, next) => {
   try {
-    let albums = await Albums.findAll({
+    let albums = await Album.findAll({
       // include: {
       //   where: {
       //     artist: {
@@ -13,7 +14,8 @@ router.get('/', async (req, res, next) => {
       // }
     })
     console.log('album', albums)
+    res.send(albums)
   } catch (err) {next(err)}
 })
 
-module.exports = Album
+module.exports = router
