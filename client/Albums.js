@@ -2,15 +2,17 @@ import React from 'react';
 import Album from './Album';
 
 const Albums = (props) => {
-  const { albums } = props;
+  const albums  = props.albums
 
   return (
     <div id='albums' className='row wrap'>
-
-      <Album albums={albums} />
+ 
+      {
+      albums.map(album => <Album album={album} key={album.id}/>)
+      }
 
     </div>
-  );
-};
+  )
+}
 
 export default Albums;

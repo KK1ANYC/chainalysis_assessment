@@ -4,6 +4,7 @@ import axios from 'axios';
 import Sidebar from './Sidebar';
 import Albums from './Albums';
 import Player from './Player';
+import SingleAlbum from './SingleAlbum'
 
 const albums = [
   {
@@ -32,29 +33,30 @@ export default class Main extends React.Component {
   constructor() {
     super();
     this.state = {
-      albums
-    };
+      albums: [],
+      selectedAlbum:
+    }
+  }
+
+  async componentDidMount() {
+    try {
+      const res = await axios.get('/api/albums')
+      const albums = res.data
+      this.setState({albums})
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   render () {
     return (
       <div id='main' className='row container'>
-
-        <div id='app'>
-
-          <div id='main' className='row container'>
-
-            <Sidebar albums={this.state.albums} />
-
-            <div className='container'>
-              <Albums albums={this.state.albums} />
-            </div>
-
-            <Player />
-
-          </div>
+        <Sidebar />
+        <div className='container'>
+          <Albums albums={this.state.albums} />
+          <SingleAlbum album={this.state.selectedAlbum} />
         </div>
-
+        <Player />
       </div>
     )
   }
