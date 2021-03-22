@@ -34,8 +34,10 @@ export default class Main extends React.Component {
     super();
     this.state = {
       albums: [],
-      selectedAlbum:
+      selectedAlbum: {}
     }
+    this.selectAlbum = this.selectAlbum.bind(this)
+    this.deselectAlbum = this.deselectAlbum.bind(this)
   }
 
   async componentDidMount() {
@@ -48,13 +50,29 @@ export default class Main extends React.Component {
     }
   }
 
+  async selectAlbum(albumId) {
+    try {
+      const res = await axios.get(`/api/albums/${albumId}`)
+      const selectedAlbum = res.data
+      this.setState({selectedAlbum})
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  deselectAlbum() {
+      this.setState({selectedAlbum: {}})
+  }
+
   render () {
+    const {albums, selectedAlbum} = this.state
     return (
       <div id='main' className='row container'>
-        <Sidebar />
+        <Sidebar deselectAlbum={this.deselectAlbum}/>
         <div className='container'>
-          <Albums albums={this.state.albums} />
-          <SingleAlbum album={this.state.selectedAlbum} />
+          {
+          selectedAlbum.id ? <SingleAlbum album={selectedAlbum} /> : <Albums albums={albums} selectAlbum={this.selectAlbum}/>
+          }
         </div>
         <Player />
       </div>

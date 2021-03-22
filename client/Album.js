@@ -5,11 +5,13 @@ const Album = (props) => {
   const name = props.album.name
   const artworkUrl = props.album.artworkUrl
   const artist = props.album.artist.name
+  const selectAlbum = props.selectAlbum
+  const albumId = props.album.id
 
-  return (
+  return ( 
 <>
     <div className='album'>
-        <a>
+        <a onClick={() => selectAlbum(albumId) }>
           <img src={artworkUrl} />
           <p>{name}</p>
           <small>{artist}</small>

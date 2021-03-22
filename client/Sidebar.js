@@ -1,15 +1,14 @@
 import React from 'react';
 
 const Sidebar = (props) => {
-  const { albums } = props;
-  // Might not need props
+const deselectAlbum = props.deselectAlbum
 
   return (
     <div id='sidebar'>
       <img src='juke.svg' id='logo' />
       <section>
         <h4>
-          <a>ALBUMS</a>
+          <a onClick={deselectAlbum}>ALBUMS</a>
         </h4>
       </section>
   </div>
