@@ -89,6 +89,7 @@ export default class Main extends React.Component {
 
   render() {
     const { albums, selectedAlbum } = this.state;
+
     return (
       <div id="main" className="row container">
         <Sidebar deselectAlbum={this.deselectAlbum} />
@@ -99,7 +100,7 @@ export default class Main extends React.Component {
               start={this.start}
               pause={this.pause}
               currentSongId={this.state.currentSongId}
-              songIsPlaying={this.state.SongIsPlaying}
+              songIsPlaying={this.state.songIsPlaying}
             />
           ) : (
             <Albums albums={albums} selectAlbum={this.selectAlbum} />

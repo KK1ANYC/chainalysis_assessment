@@ -3,6 +3,11 @@ import React from "react";
 const Songs = (props) => {
   const { songs, artist, start, pause, currentSongId, songIsPlaying } = props;
 
+  // console.log('songs', songs)
+  // console.log('currentSongId', currentSongId)
+  console.log("props", props)
+  console.log('songIsPlaying', songIsPlaying)
+
   return (
     <>
       <table id="songs">
@@ -17,6 +22,9 @@ const Songs = (props) => {
           {songs.map((song, idx) => {
             //isPlaying is not switching from false to true & vice versa
             const isPlaying = (song.id === currentSongId && songIsPlaying)
+
+            // console.log("song.id", song.id)
+            // console.log('isPlaying', isPlaying)
 
             return (
               <tr key={song.id}>
