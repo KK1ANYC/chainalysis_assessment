@@ -1,5 +1,7 @@
 /* tags */
-* {
+*
+/*
+{
   box-sizing: border-box;
 }
 
@@ -58,7 +60,7 @@ td {
   padding: 10px;
 }
 
-/* ids */
+
 #app {
   height: 100%;
   width: 100%;
@@ -132,7 +134,7 @@ td {
   border-bottom: 2px solid #00aaaa;
 }
 
-/* classes */
+
 .album {
   margin: 1em;
 }
@@ -173,4 +175,22 @@ td {
 .row {
   display: flex;
   flex-direction: row;
+} */
+
+/* polco assessment */
+
+.allBox {
+  height:700px;
+  width:1000px;
+  border:1px solid #ccc;
+  font-family: 'ralewaythin';
+  font-weight: normal;
+  font-style: normal;
+  overflow:auto;
+}
+
+@font-face {
+    font-family: 'ralewaythin';
+    src: url(“localhost:8080/css/fonts/ralewaythin.woff2”) format('woff2'),
+         url(“localhost:8080/css/fonts/ralewaythin.wof”) format('woff');
 }
