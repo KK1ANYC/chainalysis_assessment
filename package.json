@@ -1,25 +1,20 @@
 {
-  "name": "juke",
+  "name": "polco-assessment",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "npm run start-server & npm run build-watch",
     "start-server": "nodemon --watch server -e js,html server/main.js",
-    "build-watch": "webpack -w",
-    "seed": "node ./bin/seed"
+    "build-watch": "webpack -w"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
-    "morgan": "^1.10.0",
-    "pg": "^8.5.1",
     "react-icons": "^4.2.0",
-    "sequelize": "^6.3.4",
-    "volleyball": "^1.5.1"
+    "sequelize": "^6.3.4"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
