@@ -1,196 +1,124 @@
-/* tags */
-*
-/*
-{
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Open Sans', arial,sans-serif;
-  padding-bottom: 56px;
-  margin: 0;
-  height: 100vh;
-  width: 100vw;
-  background: linear-gradient(45deg, #222, #333);
-  background-attachment: fixed;
-  color: #f2f2f2;
-  letter-spacing: 0.03em;
-}
-
-i {
-  color: #00aaaa;
-  font-size: 2em;
-}
-
-p {
-  font-size: 14px;
-  margin: 0;
-}
-
-small {
-  font-size: 12px;
-  color: darkgray;
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table tr:hover {
-  background-color: #333;
-}
-
-table tr.active {
-  background-color: #333;
-}
-
-i.fa {
-  cursor: pointer;
-  font-size: 2em;
-  transition: color 0.2s ease;
-}
-
-i.fa:hover {
-  color: #00aa00;
-}
-
-td {
-  border-bottom: 1px solid gray;
-  padding: 10px;
-}
-
-
-#app {
-  height: 100%;
-  width: 100%;
-  overflow: scroll;
-}
-
-#albums {
-  margin: 2em;
-}
-
-#logo {
-  max-height: 100px;
-  max-width: 100px;
-}
-
-#main > div.container {
-  margin-left: 150px;
-}
-
-#player-container {
-  position: fixed;
-  height: 56px;
-  width: 100%;
-  bottom: 0;
-}
-
-#player-controls {
-  background-color: #333;
-  box-shadow: 0px -2px 2px #5a5a5a;
-  height: 100%;
-}
-
-#player-controls > div {
-  height: 100%;
-  align-items: center;
-}
-
-#player-controls i {
-  font-size: 2em;
-  padding: 0 0.5em;
-}
-
-#player-controls i:nth-child(2) {
-  font-size: 3em;
-}
-
-#sidebar {
-  min-width: 150px;
-  height: 100%;
-  background-color: #333;
-  border-right: 1px solid gray;
-  text-align: center;
-  position: fixed;
-}
-
-#sidebar img {
-  padding-top: 10px;
-}
-
-#sidebar section {
-  text-align: left;
-  padding-left: 10px;
-}
-
-#sidebar a {
-  transition: border 0.2s ease;
-  cursor: pointer;
-}
-
-#sidebar a:hover {
-  border-bottom: 2px solid #00aaaa;
-}
-
-
-.album {
-  margin: 1em;
-}
-
-.album img {
-  height: 200px;
-  width: 200px;
-  transition: box-shadow 0.5s ease;
-  border-radius: 3px;
-}
-
-.album img:hover {
-  box-shadow: 2px 2px 2px #5a5a5a;
-}
-
-.center {
-  justify-content: center;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-}
-
-.container {
-  height: 100%;
-  width: 100%;
-}
-
-.gray {
-  color: gray;
-}
-
-.wrap {
-  flex-wrap: wrap;
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-} */
-
 /* polco assessment */
 
-.allBox {
-  height:700px;
-  width:1000px;
-  border:1px solid #ccc;
-  font-family: 'ralewaythin';
-  font-weight: normal;
-  font-style: normal;
-  overflow:auto;
+body {
+  background-color: #e2e2e2;
 }
 
-@font-face {
-    font-family: 'ralewaythin';
-    src: url(“localhost:8080/css/fonts/ralewaythin.woff2”) format('woff2'),
-         url(“localhost:8080/css/fonts/ralewaythin.wof”) format('woff');
+#main {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+#main * {
+  font-family: "Raleway", sans-serif;
+}
+
+.allBox {
+  border: 1px solid #ccc;
+  background-color: white;
+  box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.2);
+}
+
+.students {
+  height: 600px;
+  width: 900px;
+  border: 1px solid #ccc;
+  overflow: auto;
+  background-color: white;
+  box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.2);
+}
+
+/* .searchInput {
+  width: 900px;
+
+} */
+
+input {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  height: 30px;
+  padding: 5px;
+  background: transparent;
+  border: none;
+  outline: 0;
+  border-bottom: 1px solid #000000;
+  padding: 10px 10px 10px 10px;
+}
+
+.subBox1 {
+  display: flex;
+  /* flex-wrap: wrap; */
+}
+
+.image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50% 50% 50% 50%;
+  border: 1px solid #cfcfcf;
+}
+
+.imgBox {
+  padding: 3%;
+}
+
+.subBox2 * {
+  margin: 0;
+}
+
+.subBox2 p {
+  text-indent: 20px;
+  color: black;
+  margin: 5px;
+  /* line-height: 0.05; */
+  /* font-weight: thin; */
+}
+
+.subBox4 {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+
+
+hr {
+  height: 1px;
+  background-color: rgb(230, 230, 230);
+  border: none;
+}
+
+.grade {
+  display: flex;
+}
+
+.buttonDiv {
+  margin-left: auto;
+}
+
+.buttonDiv * {
+  color: rgb(170, 170, 170);
+  width: 2rem;
+  height: 2rem;
+  padding: 1rem;
+}
+
+.subBox5 {
+  margin-top: 1rem;
+}
+
+.spanTag {
+  font-size: 15px;
+  background-color: rgb(224,224,224);
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  padding: 7px;
+  border-radius: 5px 5px 5px;
+  margin: 2px;
+}
+
+.tagBox {
+  padding-left: 24px;
 }
