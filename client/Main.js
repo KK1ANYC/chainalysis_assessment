@@ -33,14 +33,6 @@ export default class Main extends React.Component {
     let { data, search, active, tags, tagGroup, searchTag } = this.state;
     let students = data.students || [];
 
-    console.log("students obj arr", students);
-
-    console.log("tag", tags);
-
-    console.log("tagGroup", tagGroup);
-
-    console.log("tag", tags);
-
     function average(arr) {
       let total = arr.reduce((accum, cv) => {
         return accum + Number(cv);
@@ -52,21 +44,19 @@ export default class Main extends React.Component {
       <div id="main" className="row container">
         {students.length > 0 ? (
           <div className="allBox">
-            <div className="searchInput">
+            <div className="searchInputBox">
               <input
+                className="searchInput"
                 type="text"
-                size="100VW"
                 placeholder="Search by name"
                 onChange={(event) => {
                   this.setState({ search: event.target.value });
                 }}
               />
-            </div>
 
-            <div className="searchTagInput">
               <input
+                className="searchInput"
                 type="text"
-                size="100VW"
                 placeholder="Search by tag"
                 onChange={(event) => {
                   this.setState({ searchTag: event.target.value });
@@ -132,8 +122,8 @@ export default class Main extends React.Component {
                   }
                 })
                 .map((student) => (
-                  <>
-                    <div key={student.id} className="subBox1">
+                  <div key={student.id}>
+                    <div className="subBox1">
                       <div className="imgBox">
                         <img
                           src={student.pic}
@@ -188,10 +178,10 @@ export default class Main extends React.Component {
                             })}
                           </div>
 
-                          <div className="tagInput" key={student.id}>
+                          <div key={student.id}>
                             <input
                               type="text"
-                              // size="5"
+                              className="tagInput"
                               placeholder="Add a tag"
                               value={tags[student.id] || ""}
                               name={student.id}
@@ -222,7 +212,6 @@ export default class Main extends React.Component {
                             />
                           </div>
                         </div>
-
                       </div>
 
                       <div className="buttonDiv">
@@ -255,7 +244,7 @@ export default class Main extends React.Component {
                       </div>
                     </div>
                     <hr />
-                  </>
+                  </div>
                 ))}
             </div>
           </div>
