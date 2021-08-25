@@ -6,7 +6,6 @@ import Grades from "./Grades";
 import Tags from "./Tags";
 import TagInput from "./TagInput";
 
-
 const Main = () => {
   const [students, setStudents] = useState([]);
   const [active, setActive] = useState([]);
@@ -33,6 +32,18 @@ const Main = () => {
     return total / testScores.length;
   };
 
+  const arrStudentId = (tagGroup, searchTag) => {
+    let arrOfIds = [];
+    for (let i = 0; i < tagGroup.length; i++) {
+      let tagObj = tagGroup[i];
+      let tagString = tagObj.tags[tagObj.studentId].toString().toLowerCase();
+      if (tagString.includes(searchTag.toLowerCase())) {
+        arrOfIds.push(Number(tagObj.studentId));
+      }
+    }
+    return arrOfIds;
+  };
+
   return (
     <div id="main" className="row container">
       {students.length > 0 ? (
@@ -42,58 +53,32 @@ const Main = () => {
           <div className="students">
             {students
               .filter((student) => {
-                if (search === "" && searchTag === "") {
-                  return student;
-                } else if (search !== "" && searchTag === "") {
-                  if (
-                    student.firstName
-                      .toLowerCase()
-                      .includes(search.toLowerCase()) ||
-                    student.lastName
-                      .toLowerCase()
-                      .includes(search.toLowerCase())
-                  ) {
+                const fNameSearch = student.firstName
+                  .toLowerCase()
+                  .includes(search.toLowerCase());
+
+                const lNameSearch = student.lastName
+                  .toLowerCase()
+                  .includes(search.toLowerCase());
+
+                const arrId = arrStudentId(tagGroup, searchTag);
+
+                const studentIdIncluded = arrId.includes(Number(student.id));
+
+                if (search !== "" && searchTag === "") {
+                  if (fNameSearch || lNameSearch) {
                     return student;
                   }
                 } else if (search === "" && searchTag !== "") {
-                  let arrId = [];
-                  for (let i = 0; i < tagGroup.length; i++) {
-                    if (
-                      tagGroup[i].tags[tagGroup[i].studentId]
-                        .toString()
-                        .toLowerCase()
-                        .includes(searchTag.toLowerCase())
-                    ) {
-                      arrId.push(Number(tagGroup[i].studentId));
-                    }
-                  }
-                  if (arrId.includes(Number(student.id))) {
+                  if (studentIdIncluded) {
                     return student;
                   }
                 } else if (search !== "" && searchTag !== "") {
-                  let arrId = [];
-                  for (let i = 0; i < tagGroup.length; i++) {
-                    if (
-                      tagGroup[i].tags[tagGroup[i].studentId]
-                        .toString()
-                        .toLowerCase()
-                        .includes(searchTag.toLowerCase())
-                    ) {
-                      arrId.push(Number(tagGroup[i].studentId));
-                    }
-                  }
-                  if (
-                    (arrId.includes(Number(student.id)) &&
-                      student.firstName
-                        .toLowerCase()
-                        .includes(search.toLowerCase())) ||
-                    (arrId.includes(Number(student.id)) &&
-                      student.lastName
-                        .toLowerCase()
-                        .includes(search.toLowerCase()))
-                  ) {
+                  if (studentIdIncluded && (fNameSearch || lNameSearch)) {
                     return student;
                   }
+                } else {
+                  return student;
                 }
               })
               .map((student) => (
