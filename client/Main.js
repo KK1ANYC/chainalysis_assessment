@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaPlus, FaMinus } from "react-icons/fa";
+import SearchBar from "./SearchBar";
 
 const Main = () => {
   const [students, setStudents] = useState([]);
-  const [search, setSearch] = useState("");
   const [active, setActive] = useState([]);
   const [tags, setTags] = useState({});
   const [tagGroup, setTagGroup] = useState([]);
+  const [search, setSearch] = useState("");
   const [searchTag, setSearchTag] = useState("");
 
   useEffect(() => {
@@ -32,25 +33,7 @@ const Main = () => {
     <div id="main" className="row container">
       {students.length > 0 ? (
         <div className="allBox">
-          <div className="searchInputBox">
-            <input
-              className="searchInput"
-              type="text"
-              placeholder="Search by name"
-              onChange={(event) => {
-                setSearch(event.target.value);
-              }}
-            />
-
-            <input
-              className="searchInput"
-              type="text"
-              placeholder="Search by tag"
-              onChange={(event) => {
-                setSearchTag(event.target.value);
-              }}
-            />
-          </div>
+          <SearchBar setSearch={setSearch} setSearchTag={setSearchTag} />
 
           <div className="students">
             {students
@@ -157,16 +140,16 @@ const Main = () => {
                           {tagGroup.map((tag, idx) => {
                             return Number(student.id) ===
                               Number(tag.studentId) ? (
-                              <span className="spanTag">
+                              <span className="spanTag" key={idx}>
                                 {tag.tags[student.id]}
                               </span>
                             ) : (
-                              <div></div>
+                              <div key={idx}></div>
                             );
                           })}
                         </div>
 
-                        <div key={student.id}>
+                        <div>
                           <input
                             type="text"
                             className="tagInput"
