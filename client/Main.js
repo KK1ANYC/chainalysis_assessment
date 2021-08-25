@@ -5,6 +5,7 @@ import PlusMinusButton from "./PlusMinusButton";
 import Grades from "./Grades";
 import Tags from "./Tags";
 import TagInput from "./TagInput";
+import StudentDetails from "./StudentDetails";
 
 const Main = () => {
   const [students, setStudents] = useState([]);
@@ -93,19 +94,7 @@ const Main = () => {
                     </div>
 
                     <div className="subBox2">
-                      <div className="subBox4">
-                        <h2>
-                          {student.firstName.toUpperCase()}{" "}
-                          {student.lastName.toUpperCase()}
-                        </h2>
-                      </div>
-
-                      <div className="subBox3">
-                        <p>Email: {student.email}</p>
-                        <p>Company: {student.company}</p>
-                        <p>Skill: {student.skill}</p>
-                        <p>Average: {average(student.grades)}%</p>
-                      </div>
+                      <StudentDetails average={average} student={student} />
 
                       <Grades student={student} active={active} />
 
