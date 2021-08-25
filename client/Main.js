@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { FaPlus, FaMinus } from "react-icons/fa";
 import SearchBar from "./SearchBar";
+import PlusMinusButton from "./PlusMinusButton";
+import Grades from "./Grades";
+import Tags from "./Tags";
+import TagInput from "./TagInput";
+
 
 const Main = () => {
   const [students, setStudents] = useState([]);
@@ -22,11 +26,11 @@ const Main = () => {
     getData();
   }, []);
 
-  const average = (arr) => {
-    let total = arr.reduce((accum, cv) => {
-      return accum + Number(cv);
+  const average = (testScores) => {
+    const total = testScores.reduce((accum, testScore) => {
+      return accum + Number(testScore);
     }, 0);
-    return total / arr.length;
+    return total / testScores.length;
   };
 
   return (
@@ -118,92 +122,28 @@ const Main = () => {
                         <p>Average: {average(student.grades)}%</p>
                       </div>
 
-                      <div className="subBox5">
-                        {active.includes(student.id) ? (
-                          <div className="grades">
-                            {student.grades.map((grade, idx) => {
-                              return (
-                                <div key={idx} className="grade">
-                                  <p>Test {idx + 1}:</p>
-                                  <p>{Number(grade)}%</p>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        ) : (
-                          <div />
-                        )}
-                      </div>
+                      <Grades student={student} active={active} />
 
                       <div className="tagBox">
-                        <div className="tags">
-                          {tagGroup.map((tag, idx) => {
-                            return Number(student.id) ===
-                              Number(tag.studentId) ? (
-                              <span className="spanTag" key={idx}>
-                                {tag.tags[student.id]}
-                              </span>
-                            ) : (
-                              <div key={idx}></div>
-                            );
-                          })}
-                        </div>
+                        <Tags tagGroup={tagGroup} student={student} />
 
                         <div>
-                          <input
-                            type="text"
-                            className="tagInput"
-                            placeholder="Add a tag"
-                            value={tags[student.id] || ""}
-                            name={student.id}
-                            onChange={(event) => {
-                              setTags({
-                                [event.target.name]: event.target.value,
-                              });
-                            }}
-                            onKeyDown={(event) => {
-                              if (event.key === "Enter") {
-                                setTagGroup([
-                                  ...tagGroup,
-                                  {
-                                    studentId: student.id,
-                                    tags: {
-                                      [event.target.name]: event.target.value,
-                                    },
-                                  },
-                                ]);
-                                setTags("");
-                              }
-                            }}
+                          <TagInput
+                            student={student}
+                            tags={tags}
+                            setTags={setTags}
+                            setTagGroup={setTagGroup}
+                            tagGroup={tagGroup}
                           />
                         </div>
                       </div>
                     </div>
 
-                    <div className="buttonDiv">
-                      {!active.includes(student.id) ? (
-                        <FaPlus
-                          type="button"
-                          className="button"
-                          onClick={() => {
-                            setActive([...active, student.id]);
-                          }}
-                        />
-                      ) : (
-                        <FaMinus
-                          type="button"
-                          className="button"
-                          onClick={() => {
-                            let arr = active.filter((cv) => {
-                              if (student.id !== cv) {
-                                return cv;
-                              }
-                            });
-                            setActive([...arr]);
-                          }}
-                        />
-                      )}
-                    </div>
+                    <PlusMinusButton
+                      student={student}
+                      setActive={setActive}
+                      active={active}
+                    />
                   </div>
                   <hr />
                 </div>

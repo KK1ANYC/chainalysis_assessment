@@ -25,3 +25,5 @@ const SearchBar = ({ setSearch, setSearchTag }) => {
 };
 
 export default SearchBar;
+
+
