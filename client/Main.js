@@ -3,31 +3,51 @@ import axios from "axios";
 const CoinGecko = require("coingecko-api");
 
 const Main = () => {
-  const [gecko, setGecko] = useState({});
+  const [geckoBTC, setGeckoBTC] = useState({});
+  const [geckoETH, setGeckoETH] = useState({});
   const [blockchain, setBlockchain] = useState([]);
 
   useEffect(() => {
     const CoinGeckoClient = new CoinGecko();
-    var getData = async () => {
+    var getBtcData = async () => {
       let data = await CoinGeckoClient.coins.fetch("bitcoin", {});
-      setGecko(data)
+      setGeckoBTC(data);
     };
-    getData()
+    getBtcData()
+    var getEthData = async () => {
+      let data = await CoinGeckoClient.coins.fetch("ethereum", {});
+      setGeckoETH(data);
+    };
+    getEthData()
   }, [])
 
   let btcPrice = 0;
-  if (gecko.data !== undefined) {
-    btcPrice = gecko.data.market_data.current_price.usd;
+  if (geckoBTC.data !== undefined) {
+    btcPrice = geckoBTC.data.market_data.current_price.usd;
     console.log("btcPrice", btcPrice);
+  }
+
+  let ethPrice = 0;
+  if (geckoETH.data !== undefined) {
+    ethPrice = geckoETH.data.market_data.current_price.usd;
+    console.log("ethPrice", ethPrice);
   }
 
   return (
     <div id="main" className="container">
       <div>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
+        <p>CoinGecko</p>
+        <p>BTC</p>
+        <p>1 BTC in USD: {btcPrice}</p>
+        <p>ETH</p>
+        <p>1 ETH in USD: {ethPrice}</p>
+      </div>
+      <div>
+        <p>Blockchain</p>
+        <p>BTC</p>
+        <p>1 BTC in USD: {btcPrice}</p>
+        <p>ETH</p>
+        <p>1 ETH in USD: {ethPrice}</p>
       </div>
     </div>
   );
